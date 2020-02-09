@@ -415,8 +415,10 @@ class ReactNativeZoomableView extends Component {
     // make sure we shift the layer slowly during our zoom movement
     const zoomStage = Math.abs(zoomLevel - this.state.lastZoomLevel) / zoomCenteringLevelDistance;
 
-    const ratioOffsetX = this.state.lastX + zoomStage * this.pinchZoomPosition.x;
-    const ratioOffsetY = this.state.lastY + zoomStage * this.pinchZoomPosition.y;
+    //const ratioOffsetX = this.state.lastX + zoomStage * this.pinchZoomPosition.x;
+    //const ratioOffsetY = this.state.lastY + zoomStage * this.pinchZoomPosition.y;
+    const ratioOffsetX = this.state.lastX + gestureState.dx / this.state.zoomLevel / movementSensibility;
+    const ratioOffsetY = this.state.lastY + gestureState.dy / this.state.zoomLevel / movementSensibility;
 
     // define the changeObject and make sure the offset values are bound to view
     const changeStateObj = this._bindOffsetValuesToBorders({
