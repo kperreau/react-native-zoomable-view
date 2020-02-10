@@ -378,7 +378,7 @@ class ReactNativeZoomableView extends Component {
    * @private
    */
   _handlePinching = (e, gestureState) => {
-    const { maxZoom, minZoom, zoomCenteringLevelDistance, pinchToZoomInSensitivity, pinchToZoomOutSensitivity } = this.props;
+    const { maxZoom, minZoom, zoomCenteringLevelDistance, pinchToZoomInSensitivity, pinchToZoomOutSensitivity, movementSensibility } = this.props;
 
     let dx = Math.abs(e.nativeEvent.touches[0].pageX - e.nativeEvent.touches[1].pageX);
     let dy = Math.abs(e.nativeEvent.touches[0].pageY - e.nativeEvent.touches[1].pageY);
