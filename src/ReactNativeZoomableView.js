@@ -27,6 +27,11 @@ class ReactNativeZoomableView extends Component {
       onPanResponderRelease: this._handlePanResponderEnd,
       onPanResponderTerminationRequest: evt => false,
       onShouldBlockNativeResponder: evt => false,
+      onPanResponderEnd: (e, gestureState) => {
+        if (this.props.onPanResponderEnd) {
+          this.props.onPanResponderEnd(e, gestureState, this._getZoomableViewEventObject());
+        }
+      }
     });
 
     this.state = {
@@ -200,9 +205,9 @@ class ReactNativeZoomableView extends Component {
       this.longPressTimeout = null;
     }
 
-    if (this.props.onPanResponderEnd) {
-      this.props.onPanResponderEnd(e, gestureState, this._getZoomableViewEventObject());
-    }
+    //if (this.props.onPanResponderEnd) {
+    //  this.props.onPanResponderEnd(e, gestureState, this._getZoomableViewEventObject());
+    //}
 
     if (this.gestureType === 'pinch') {
       this.pinchZoomPosition = null;
