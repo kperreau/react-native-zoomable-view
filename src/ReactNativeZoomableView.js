@@ -365,7 +365,7 @@ class ReactNativeZoomableView extends Component {
       if (this.gestureType !== 'pinch') {
         this.gestureType = 'shift';
       }
-      this._handleMovement(e, gestureState);
+      // this._handleMovement(e, gestureState);
     }
   };
 
