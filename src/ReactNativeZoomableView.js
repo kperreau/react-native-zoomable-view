@@ -18,6 +18,9 @@ const initialState = {
 class ReactNativeZoomableView extends Component {
   constructor(props) {
     super(props);
+    if (props.ref) {
+      props.ref.current = this;
+    }
 
     this.gestureHandlers = PanResponder.create({
       onStartShouldSetResponderCapture: () => true,
@@ -61,6 +64,14 @@ class ReactNativeZoomableView extends Component {
       distanceBottom: 0,
     };
   }
+
+  reset = () => {
+    const { zoomEnabled, initialZoom } = this.props;
+    this.setState({
+      zoomLevel: initialZoom,
+      ...initialState
+    });
+  };
 
   componentDidUpdate(prevProps) {
     const { zoomEnabled, initialZoom } = this.props;
@@ -353,7 +364,7 @@ class ReactNativeZoomableView extends Component {
       }
     }
 
-    if (gestureState.numberActiveTouches === 2) {
+    if (gestureState.numberActiveTouches === 2 && this.props.zoomEnabled) {
       if (this.longPressTimeout) {
         clearTimeout(this.longPressTimeout);
         this.longPressTimeout = null;
