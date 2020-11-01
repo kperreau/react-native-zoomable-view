@@ -18,8 +18,8 @@ const initialState = {
 class ReactNativeZoomableView extends Component {
   constructor(props) {
     super(props);
-    if (props.ref) {
-      props.ref.current = this;
+    if (props.refZoom) {
+      props.refZoom.current = this;
     }
 
     this.gestureHandlers = PanResponder.create({
